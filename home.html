@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wahyu Imanullah - Portofolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      line-height: 1.6;
+    }
+
+    /* === NAVBAR === */
+    nav {
+      background: #1e293b;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    nav a {
+      color: #f8fafc;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #38bdf8; }
+
+    /* === HERO === */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: #38bdf8;
+    }
+    header h2 {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      margin: 0.5rem 0 1rem;
+    }
+    header p {
+      max-width: 600px;
+      margin: auto;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    /* === SECTION === */
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: #38bdf8;
+      margin-bottom: 1.5rem;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #1e293b;
+      padding: 1.5rem;
+      border-radius: 12px;
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-8px); }
+
+    /* === FOOTER === */
+    footer {
+      padding: 2rem;
+      background: #1e293b;
+      text-align: center;
+    }
+    footer p { font-size: 0.9rem; }
+
+    /* === MOBILE NAVBAR (opsional burger menu) === */
+    @media (max-width: 768px) {
+      nav { flex-direction: column; align-items: flex-start; }
+      nav a { margin: 0.5rem 0; display: block; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">WI</div>
+    <div class="menu">
+      <a href="#about">Tentang</a>
+      <a href="#projects">Proyek</a>
+      <a href="#contact">Kontak</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <div>
+      <h1>Halo, Saya Wahyu Imanullah</h1>
+      <h2>Web Developer | UI/UX Designer</h2>
+      <p>Saya fokus pada desain modern, animasi halus, dan pengalaman pengguna yang memikat.</p>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Proyek Saya</h2>
+    <div class="projects">
+      <div class="card">🌐 Website Company Profile</div>
+      <div class="card">🛒 Aplikasi Toko Online</div>
+      <div class="card">📱 Aplikasi Mobile UI/UX</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Wahyu Imanullah. Semua Hak Dilindungi.</p>
+  </footer>
+</body>
+</html>
