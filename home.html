@@ -1,263 +1,620 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wahyu Imanullah - Portofolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wahyu Imanullah — Portofolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="CV online Wahyu Imanullah — Web Developer, UI/UX Designer, Mobile App Developer.">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
-      line-height: 1.6;
-      scroll-behavior: smooth;
+    :root{
+      --bg:#0f172a; /* dark */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#38bdf8; /* cyan */
+      --accent-2:#6366f1; /* purple */
+      --glass: rgba(255,255,255,0.04);
+    }
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",sans-serif;
+      background: linear-gradient(180deg,var(--bg), #071028 120%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* === LOADING SCREEN === */
-    #loading {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #0f172a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      z-index: 2000;
-    }
-    .spinner {
-      width: 60px;
-      height: 60px;
-      border: 6px solid #1e293b;
-      border-top: 6px solid #38bdf8;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
-    }
-    #loading h1 {
-      color: #38bdf8;
-      font-size: 1.3rem;
-      letter-spacing: 2px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    /* Container */
+    .container{
+      max-width:1100px;
+      margin:40px auto;
+      padding:28px;
     }
 
-    /* === NAVBAR === */
-    nav {
-      background: rgba(30, 41, 59, 0.9);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(8px);
+    /* Header */
+    .header{
+      display:flex;
+      gap:22px;
+      align-items:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:14px;
+      padding:20px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+      position:relative;
+      overflow:hidden;
     }
-    nav .logo {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #38bdf8;
-      letter-spacing: 1px;
+    .avatar{
+      width:120px; height:150px;
+      border-radius:10px;
+      border:3px solid rgba(56,189,248,0.12);
+      overflow:hidden;
+      flex:0 0 120px;
+      box-shadow: 0 8px 30px rgba(56,189,248,0.06);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .head-info{
+      flex:1;
+    }
+    .name{
+      font-size:1.6rem;
+      font-weight:700;
+      color:var(--accent);
+      letter-spacing:0.4px;
+    }
+    .role{
+      margin-top:6px;
+      font-weight:500;
+      color:#cdeeff;
+      opacity:0.95;
+    }
+    .meta{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      padding:10px 14px;
+      border-radius:10px;
+      color:#012;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      box-shadow: 0 10px 25px rgba(99,102,241,0.12);
+      transition: transform .18s ease, box-shadow .18s ease;
+      text-decoration:none;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .btn:hover{transform:translateY(-4px)}
+    .btn.secondary{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(56,189,248,0.12);
+      box-shadow:none;
+      font-weight:600;
     }
 
-    /* === HAMBURGER MENU === */
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
+    /* Layout columns */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:26px;
+      margin-top:22px;
     }
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: #f8fafc;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translateY(8px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translateY(-8px); }
 
-    /* === SIDEBAR === */
+    /* Left column */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.45);
+    }
+    h3.section-title{
+      color:#bfe9ff;
+      font-size:1.05rem;
+      margin-bottom:12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+    }
+
+    /* About */
+    .about p{color:#dbeffb; margin-top:8px; font-size:0.98rem}
+    .about b{color:var(--accent);}
+
+    /* Timeline (Pendidikan & Pengalaman) */
+    .timeline{display:flex;flex-direction:column;gap:14px}
+    .item{
+      display:flex;gap:12px;
+      align-items:flex-start;
+    }
+    .item .dot{
+      width:12px;height:12px;border-radius:50%;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      margin-top:6px;
+      flex:0 0 12px;
+      box-shadow:0 6px 20px rgba(56,189,248,0.12);
+    }
+    .item .body{flex:1}
+    .item .body .title{font-weight:700;color:#dbeffb}
+    .item .body .meta{font-size:0.9rem;color:var(--muted);margin-top:4px}
+    .item .body p{color:#cfefff;margin-top:8px;font-size:0.95rem}
+
+    /* Skills */
+    .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .skill{
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .skill .bar{
+      height:10px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;
+    }
+    .skill .bar > i{
+      display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      transform-origin:left;transition:width .9s ease;
+    }
+    .skill .label{display:flex;justify-content:space-between;font-size:0.9rem;color:#dbeffb}
+
+    /* Soft skills tags */
+    .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .tag{
+      background:var(--glass);
+      color:#dbeffb;padding:8px 10px;border-radius:999px;font-weight:600;font-size:0.9rem;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Right column (contact, certs) */
+    .contact-list{display:flex;flex-direction:column;gap:10px}
+    .contact-row{display:flex;gap:10px;align-items:center;color:#cfefff}
+    .contact-row svg{opacity:0.95}
+    .cert-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+    .cert{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;color:#dbeffb;font-weight:600;border:1px solid rgba(255,255,255,0.02)}
+
+    /* Footer small */
+    .small{font-size:0.9rem;color:var(--muted);margin-top:10px}
+
+    /* Utilities */
+    .muted{color:var(--muted)}
+    .space{height:12px}
+
+    /* Scroll to top */
+    #scrollTop{
+      position:fixed;right:20px;bottom:20px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#012;font-weight:800;cursor:pointer;
+      box-shadow:0 10px 30px rgba(56,189,248,0.12);z-index:1200;display:none;
+    }
+
+    /* Reveal animation */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* Print */
+    @media print{
+      body{background:white;color:#111}
+      .header, .card{box-shadow:none;background:transparent;border:none}
+      a.btn{display:none}
+    }
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .grid{grid-template-columns:1fr}
+      .avatar{width:110px;height:140px}
+      .header{flex-direction:column;align-items:flex-start;gap:16px}
+      .actions{position:absolute;right:18px;top:18px}
+    }
+    @media (max-width:520px){
+      .avatar{width:92px;height:110px}
+      .name{font-size:1.25rem}
+      .role{font-size:0.95rem}
+    }
+
+    /* SIDEBAR */
     .sidebar {
       position: fixed;
-      top: 0; left: -260px;
-      width: 250px; height: 100%;
+      top: 0;
+      left: -260px;
+      width: 220px;
+      height: 100%;
       background: #1e293b;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1.2rem 1.2rem 1.2rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      transition: left 0.3s ease;
-      z-index: 1500;
+      gap: 1.2rem;
+      transition: left 0.3s cubic-bezier(.4,2,.6,1);
+      z-index: 2002;
+      box-shadow: 2px 0 16px rgba(44,62,80,0.08);
     }
-    .sidebar.show { left: 0; }
+    .sidebar.show {
+      left: 0;
+    }
     .sidebar a {
       color: #f8fafc;
       text-decoration: none;
       font-weight: 500;
-      padding: 0.8rem 1rem;
-      border-radius: 6px;
-      transition: background 0.3s;
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+      font-size: 1.08rem;
+      letter-spacing: 0.5px;
     }
-    .sidebar a:hover { background: #334155; }
-
-    /* Overlay */
-    .overlay {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      z-index: 1400;
-    }
-    .overlay.show { display: block; }
-
-    /* === HERO === */
-    header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 2.5rem;
-      padding: 2rem;
-      text-align: left;
-      animation: fadeIn 1.2s ease-in-out;
-    }
-    header img {
-      width: 160px;
-      height: 200px;
-      border: 3px solid #38bdf8;
-      object-fit: cover;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-      transition: transform 0.3s ease;
-    }
-    header img:hover { transform: scale(1.05); }
-    header h1 { font-size: clamp(1.8rem, 4vw, 3rem); color: #38bdf8; }
-    header h2 { font-size: clamp(1rem, 2.5vw, 1.5rem); font-weight: 300; margin: 0.5rem 0 1rem; }
-    header p { max-width: 600px; color: #e2e8f0; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* === SECTION === */
-    section { padding: 4rem 2rem; text-align: center; }
-    section h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      color: #38bdf8;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    section h2::after {
-      content: '';
-      width: 60px; height: 3px;
+    .sidebar a:hover, .sidebar a.active {
       background: #38bdf8;
-      display: block;
-      margin: 0.5rem auto;
-      border-radius: 2px;
-    }
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .card {
-      background: #1e293b;
-      padding: 2rem;
-      border-radius: 16px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(56,189,248,0.3);
+      color: #1e293b;
     }
 
-    /* === FOOTER === */
-    footer {
-      padding: 2rem;
-      background: #1e293b;
-      text-align: center;
-      margin-top: 2rem;
+    /* OVERLAY */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      z-index: 2001;
+      transition: opacity 0.2s;
     }
-    footer p { font-size: 0.9rem; color: #94a3b8; }
+    .overlay.show {
+      display: block;
+    }
+
+    /* HAMBURGER BUTTON */
+    .hamburger {
+      position: fixed;
+      top: 1.2rem;
+      left: 1.2rem;
+      z-index: 2100;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      outline: none;
+    }
+    .hamburger span {
+      width: 28px;
+      height: 3.5px;
+      background: #38bdf8;
+      border-radius: 5px;
+      transition: 0.3s;
+      display: block;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    /* Print */
+    @media print{
+      body{background:white;color:#111}
+      .header, .card{box-shadow:none;background:transparent;border:none}
+      a.btn{display:none}
+    }
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .grid{grid-template-columns:1fr}
+      .avatar{width:110px;height:140px}
+      .header{flex-direction:column;align-items:flex-start;gap:16px}
+      .actions{position:absolute;right:18px;top:18px}
+    }
+    @media (max-width:520px){
+      .avatar{width:92px;height:110px}
+      .name{font-size:1.25rem}
+      .role{font-size:0.95rem}
+    }
   </style>
 </head>
 <body>
-  <!-- LOADING SCREEN -->
-  <div id="loading">
-    <div class="spinner"></div>
-    <h1>Loading...</h1>
-  </div>
+  <div class="container">
+    <!-- HEADER -->
+    <header class="header reveal" id="top">
+      <div class="avatar">
+        <!-- Replace with your actual photo file name -->
+        <img src="potowahyu.jpg" alt="Foto Wahyu Imanullah" onerror="this.style.filter='grayscale(1)'; this.alt='Foto Wahyu'">
+      </div>
 
-  <!-- NAVBAR -->
-  <nav>
+      <div class="head-info">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div>
+            <div class="name">WAHYU IMANULLAH, S.Kom</div>
+            <div class="role">Web Developer • UI/UX Designer • Mobile App Developer</div>
+          </div>
+          <!-- for large screens the actions are inside the header -->
+          <div class="actions" style="display:none" id="actions-large">
+            <a class="btn" href="CVWAHYUSEPTEMBER.pdf" download>
+              ⬇ Download CV
+            </a>
+            <a class="btn secondary" href="https://wa.me/6285176767389" target="_blank">Kontak</a>
+          </div>
+        </div>
+
+        <div class="meta" style="margin-top:10px">
+          <div>jl. Seideli Kel. Pujidadi, Kec. Binjai Selatan, Kota Binjai</div>
+          <div class="space"></div>
+          <div><span style="color:var(--accent);font-weight:700">Email:</span> <span class="muted">wahyuimanullah271103@gmail.com</span> &nbsp; • &nbsp; <span style="color:var(--accent);font-weight:700">Telp:</span> <span class="muted">0851-7676-7389</span></div>
+          <div class="small muted">Lulusan Fakultas Ilmu Komputer & Teknologi Informasi — Universitas Muhammadiyah Sumatera Utara (IPK 3.67)</div>
+        </div>
+      </div>
+
+      <!-- Mobile actions -->
+      <div style="margin-left:12px" class="actions" id="actions-mobile">
+        <a class="btn" href="CVWAHYUSEPTEMBER.pdf" download title="Download CV">⬇</a>
+      </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+      <a href="#about">Tentang</a>
+      <a href="projects.html">Proyek</a>
+      <a href="#experience">Pengalaman</a>
+      <a href="#contact">Kontak</a>
+    </div>
+    <div class="overlay" id="overlay"></div>
     <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <div class="logo">WI</div>
-  </nav>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar" id="sidebar">
-    <a href="#about">Tentang</a>
-    <a href="#projects">Proyek</a>
-    <a href="#contact">Kontak</a>
+    <div class="grid">
+      <!-- LEFT COLUMN -->
+      <main>
+        <!-- ABOUT -->
+        <section class="card about reveal" style="margin-bottom:18px">
+          <h3 class="section-title">Tentang Saya</h3>
+          <p>
+            Lulusan Fakultas Ilmu Komputer & Teknologi Informasin di Universitas Muhammadiyah Sumatera Utara. Memiliki minat pada <b>pengembangan web</b>, <b>desain UI/UX</b>, dan <b>mobile app development</b>. Berpengalaman menggunakan <b>Laravel</b> & teknologi front-end untuk membangun aplikasi yang efisien dan responsif. Telah mengikuti program Magang Kampus Merdeka di Metro TV dan memiliki sertifikat magang dari Telkom Regional 1 Sumatera serta sertifikasi VSGA Kominfo.
+          </p>
+        </section>
+
+        <!-- PENDIDIKAN -->
+        <section class="card reveal" style="margin-top:18px">
+          <h3 class="section-title">Pendidikan</h3>
+          <div class="timeline">
+            <div class="item">
+              <div class="dot"></div>
+              <div class="body">
+                <div class="title">Universitas Muhammadiyah Sumatera Utara</div>
+                <div class="meta">Okt 2021 — Jul 2025 • Fakultas Ilmu Komputer & Teknologi Informasi — Teknologi Informasi • IPK 3.67</div>
+                <p>Program Sarjana Komputer (S.Kom). Fokus pada pengembangan web, database, dan desain antarmuka.</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot"></div>
+              <div class="body">
+                <div class="title">Madrasah Aliyah Negeri Binjai</div>
+                <div class="meta">May 2019 — May 2021 • Jurusan IPA</div>
+                <p>Pendidikan menengah atas dengan fokus IPA.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PENGALAMAN KERJA -->
+        <section class="card reveal" style="margin-top:18px">
+          <h3 class="section-title">Pengalaman Kerja</h3>
+          <div class="timeline" style="margin-top:6px">
+            <div class="item">
+              <div class="dot"></div>
+              <div class="body">
+                <div class="title">Magang — Metro TV, Jakarta Barat</div>
+                <div class="meta">Agus 2024 — Dec 2024 • Full Stack Developer (Magang Kampus Merdeka)</div>
+                <p>
+                  • Melakukan pemeliharaan website Beasiswa OSC untuk memastikan performa dan keamanan sistem tetap optimal.<br>
+                  • Membangun website terkait Pilkada 2024: perancangan fitur, pengembangan front-end & back-end, serta integrasi data.
+                </p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot"></div>
+              <div class="body">
+                <div class="title">Magang — Telkom Regional 1 Sumatera</div>
+                <div class="meta">Jan 2024 — Jul 2024 • IT Developer</div>
+                <p>
+                  • Terlibat dalam pemeliharaan website GAMAS untuk memastikan sistem berjalan stabil.<br>
+                  • Menambahkan fitur baru untuk meningkatkan fungsionalitas dan pengalaman pengguna.<br>
+                  • Mengontrol & memantau teknisi lapangan melalui aplikasi web GAMAS untuk memastikan pekerjaan sesuai jadwal dan standar kualitas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HARD SKILLS -->
+        <section class="card reveal" style="margin-top:18px">
+          <h3 class="section-title">Hard Skills</h3>
+          <div class="skills-grid" style="margin-top:8px">
+            <div class="skill">
+              <div class="label" style="display:flex;justify-content:space-between"><span>HTML & CSS</span><span class="muted">95%</span></div>
+              <div class="bar"><i style="width:95%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="label" style="display:flex;justify-content:space-between"><span>JavaScript</span><span class="muted">85%</span></div>
+              <div class="bar"><i style="width:85%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="label" style="display:flex;justify-content:space-between"><span>PHP & Laravel</span><span class="muted">92%</span></div>
+              <div class="bar"><i style="width:88%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="label" style="display:flex;justify-content:space-between"><span>Database (MySQL / SQLite)</span><span class="muted">82%</span></div>
+              <div class="bar"><i style="width:82%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="label" style="display:flex;justify-content:space-between"><span>UI/UX (Figma / Photoshop)</span><span class="muted">75%</span></div>
+              <div class="bar"><i style="width:75%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="label" style="display:flex;justify-content:space-between"><span>Android / iOS (Android Studio / Xcode)</span><span class="muted">70%</span></div>
+              <div class="bar"><i style="width:70%"></i></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SOFT SKILLS -->
+        <section class="card reveal" style="margin-top:18px">
+          <h3 class="section-title">Soft Skills</h3>
+          <div class="tags">
+            <div class="tag">Problem Solving</div>
+            <div class="tag">Teamwork</div>
+            <div class="tag">Adaptability</div>
+            <div class="tag">Attention to Detail</div>
+            <div class="tag">Communication</div>
+          </div>
+          <div class="small muted" style="margin-top:12px">Catatan: saya suka bekerja sistematis, teliti, dan dapat beradaptasi cepat dengan metode & tools baru.</div>
+        </section>
+
+        <!-- SERTIFIKASI -->
+        <section class="card reveal" style="margin-top:18px">
+          <h3 class="section-title">Sertifikasi & Pelatihan</h3>
+          <div class="cert-list">
+            <div class="cert">Magang Kampus Merdeka — Metro TV (Agus 2024 — Dec 2024)</div>
+            <div class="cert">Sertifikat Magang — Telkom Regional 1 Sumatera (Jan 2024 — Jul 2024)</div>
+            <div class="cert">VSGA Kominfo — Sertifikasi (Digital Skill)</div>
+          </div>
+        </section>
+      </main>
+
+      <!-- RIGHT COLUMN -->
+      <aside>
+        <div class="card reveal">
+          <h3 class="section-title">Kontak</h3>
+          <div class="contact-list">
+            <div class="contact-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:8px"><path d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2l-8 5-8-5V5z" fill="#bfe9ff"></path><path d="M21 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6l8 5 8-5z" fill="#bfe9ff"></path></svg><div><strong>Email</strong><div class="muted">wahyuimanullah271103@gmail.com</div></div></div>
+
+            <div class="contact-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:8px"><path d="M21 16.5a2 2 0 0 0-2-2h-1.5a.5.5 0 0 0-.4.2L15 19l-2-2-3 3 1.5 1.5a12 12 0 0 0 6.5 2.1A11.9 11.9 0 0 0 22 13.5V16.5z" fill="#bfe9ff"></path></svg><div><strong>Telepon</strong><div class="muted">0851-7676-7389</div></div></div>
+
+            <div class="contact-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:8px"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7z" fill="#bfe9ff"/></svg><div><strong>Alamat</strong><div class="muted">jl. Seideli Kel. Pujidadi, Kec. Binjai Selatan, Kota Binjai</div></div></div>
+          </div>
+
+          <div class="space"></div>
+          <h3 class="section-title">Ringkasan CV</h3>
+          <p style="color:#dbeffb;font-size:0.95rem">Full Stack / Web Developer berpengalaman magang di Metro TV & Telkom Regional 1 Sumatera. Kuat di Laravel, front-end, serta dasar mobile app dan desain UI/UX.</p>
+
+          <div class="space"></div>
+          <a class="btn" href="CVWAHYUSEPTEMBER.pdf" download style="width:100%;justify-content:center">⬇ Download CV (PDF)</a>
+          <a class="btn secondary" href="mailto:wahyuimanullah271103@gmail.com" style="width:100%;justify-content:center;margin-top:10px">✉ Kirim Email</a>
+        </div>
+
+        <div class="card reveal" style="margin-top:18px">
+          <h3 class="section-title">Tools & Tech</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+            <div class="tag">HTML</div>
+            <div class="tag">CSS</div>
+            <div class="tag">JavaScript</div>
+            <div class="tag">Laravel</div>
+            <div class="tag">MySQL</div>
+            <div class="tag">Figma</div>
+            <div class="tag">Android Studio</div>
+            <div class="tag">Xcode</div>
+          </div>
+        </div>
+
+        <div class="card reveal" style="margin-top:18px">
+          <h3 class="section-title">Tautan</h3>
+          <div class="small muted">link GitHub / LinkedIn</div>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+            <a class="btn secondary" href="https://github.com/wahyuimanullah12" target="_blank">GitHub</a>
+            <a class="btn secondary" href="www.linkedin.com/in/wahyu-imanullah-275610370" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div style="height:18px"></div>
+    <div class="small muted" style="text-align:center">© 2025 Wahyu Imanullah — Semua hak dilindungi.</div>
   </div>
-  <div class="overlay" id="overlay"></div>
 
-  <!-- HERO -->
-  <header id="about">
-    <img src="potowahyu.jpg" alt="Foto Profil Wahyu Imanullah">
-    <div>
-      <h1>Halo, Saya Wahyu Imanullah</h1>
-      <h2>Web Developer | UI/UX Designer</h2>
-      <p>Saya fokus pada desain modern, animasi halus, dan pengalaman pengguna yang memikat.</p>
-    </div>
-  </header>
+  <!-- Scroll to top -->
+  <button id="scrollTop" aria-label="Ke atas">⬆</button>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h2>Proyek Saya</h2>
-    <div class="projects">
-      <div class="card">🌐 Website Company Profile</div>
-      <div class="card">🛒 Aplikasi Toko Online</div>
-      <div class="card">📱 Aplikasi Mobile UI/UX</div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="contact">
-    <p>© 2025 Wahyu Imanullah. Semua Hak Dilindungi.</p>
-  </footer>
-
-  <!-- SCRIPT -->
   <script>
-    // HAMBURGER + SIDEBAR
+    // Simple reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const showOnScroll = () => {
+      const windowH = window.innerHeight;
+      for (let el of reveals) {
+        const top = el.getBoundingClientRect().top;
+        if (top < windowH - 60) el.classList.add('show');
+      }
+    };
+    window.addEventListener('scroll', showOnScroll);
+    window.addEventListener('load', () => {
+      showOnScroll();
+      // Show actions-large only on wide screens
+      if (window.innerWidth > 1000){
+        document.getElementById('actions-large').style.display = 'flex';
+        document.getElementById('actions-mobile').style.display = 'none';
+      } else {
+        document.getElementById('actions-large').style.display = 'none';
+        document.getElementById('actions-mobile').style.display = 'flex';
+      }
+      // animate skill bars
+      document.querySelectorAll('.skill .bar > i').forEach((el)=>{
+        const w = el.style.width || '0%';
+        el.style.width = '0%';
+        setTimeout(()=> el.style.width = w, 250);
+      });
+    });
+
+    // Scroll to top btn
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 260) scrollBtn.style.display = 'flex';
+      else scrollBtn.style.display = 'none';
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+    // Make download links accessible if PDF not present: graceful degrade
+    document.querySelectorAll('a[href$=".pdf"]').forEach(a=>{
+      fetch(a.href, {method:'HEAD'}).then(r=>{
+        if (!r.ok) {
+          a.addEventListener('click', (e)=>{
+            e.preventDefault();
+            alert('File CV tidak ditemukan di lokasi. Pastikan file CVWAHYUSEPTEMBER.pdf berada di folder yang sama dengan index.html atau ganti linknya.');
+          });
+        }
+      }).catch(()=>{
+        // ignore: might be blocked by CORS when file is local; fallback handled on click
+      });
+    });
+
+    // SIDEBAR TOGGLE
     const hamburger = document.getElementById("hamburger");
     const sidebar = document.getElementById("sidebar");
     const overlay = document.getElementById("overlay");
-
     hamburger.addEventListener("click", () => {
       hamburger.classList.toggle("active");
       sidebar.classList.toggle("show");
       overlay.classList.toggle("show");
     });
-
     overlay.addEventListener("click", () => {
       hamburger.classList.remove("active");
       sidebar.classList.remove("show");
       overlay.classList.remove("show");
     });
-
     document.querySelectorAll(".sidebar a").forEach(link => {
       link.addEventListener("click", () => {
         hamburger.classList.remove("active");
@@ -265,14 +622,23 @@
         overlay.classList.remove("show");
       });
     });
-
-    // LOADING SCREEN
-    window.addEventListener("load", () => {
-      const loading = document.getElementById("loading");
-      setTimeout(() => {
-        loading.style.display = "none";
-      }, 2000); // 2 detik
-    });
+    // Scrollspy: highlight active link
+    function setActiveSidebarLink() {
+      const sections = ["about","projects","experience","contact"];
+      let scrollPos = window.scrollY + 120;
+      let found = false;
+      for (let i=0; i<sections.length; i++) {
+        const sec = document.getElementById(sections[i]);
+        if (sec && sec.offsetTop <= scrollPos) {
+          document.querySelectorAll('.sidebar a').forEach(a=>a.classList.remove('active'));
+          document.querySelector('.sidebar a[href="#'+sections[i]+'"]').classList.add('active');
+          found = true;
+        }
+      }
+      if (!found) document.querySelectorAll('.sidebar a').forEach(a=>a.classList.remove('active'));
+    }
+    window.addEventListener('scroll', setActiveSidebarLink);
+    setActiveSidebarLink();
   </script>
 </body>
 </html>
